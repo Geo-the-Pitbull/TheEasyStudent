@@ -1,0 +1,52 @@
+<h1 mat-dialog-title>Add Student Information</h1>
+
+<div mat-dialog-content>
+    <form [formGroup]="studentForm">
+        <mat-form-field appearance="outline" color="warn">
+            <mat-label>Student Name</mat-label>
+            <input type="text" formControlName="studentName" matInput placeholder="Placeholder">
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline" color="warn">
+            <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender"placeholder="Gender">
+                    <mat-option value="Male">Male</mat-option>
+                    <mat-option value="Female">Female</mat-option>
+                    <mat-option value="Other/Custom">Other/Custom</mat-option>
+                </mat-select>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline" color="warn">
+            <mat-label>Choose a Date</mat-label>
+            <input formControlName="date" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    
+        
+        <label for=""><h1 style="font-size: 20px; margin: 5px;">Activity Type</h1></label>
+        <mat-radio-group formControlName="activitytype" class="example-radio-group">
+            <mat-radio-button class="example-radio-button" *ngFor="let activity of activityList" [value]="activity">
+                    {{activity}}
+            </mat-radio-button>
+        </mat-radio-group>
+        
+    
+        <mat-form-field appearance="outline" color="warn">
+            <mat-label>Grade</mat-label>
+            <input formControlName="grade" matInput type="number" placeholder="Placeholder">
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline" color="warn">
+            <mat-label>Teacher's Comments</mat-label>
+            <textarea formControlName="comment" matInput rows="5" name="data[comment]"></textarea>
+        </mat-form-field>
+    </form>  
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close="">Close</button>
+    <button mat-raised-button color="primary" (click)="addStudent()">{{actionBtn}}</button>
+</div>
+
+
